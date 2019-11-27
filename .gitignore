@@ -1,1 +1,7 @@
-.DS_Store
+*
+!.hammerspoon/init.lua
+!.config/.gitignore_global
+!.config/nvim
+!.config/iterm2
+!.zshrc
+!.tmux.conf
