@@ -10,7 +10,7 @@ call plug#begin('~/.config/nvim/bundle')
 " Place your Plugs here!
 
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'Shougo/denite.nvim'
+" Plug 'Shougo/denite.nvim'
 
 Plug 'gregsexton/gitv', {'on': ['Gitv']}
 Plug 'airblade/vim-gitgutter'
