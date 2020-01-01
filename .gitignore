@@ -1,7 +1,9 @@
-*
-!.hammerspoon/init.lua
-!.config/.gitignore_global
-!.config/nvim
-!.config/iterm2
+/*
+/.hammerspoon/*
+!/.hammerspoon/init.lua
+/.config/*
+!/.config/.gitignore_global
+!/.config/nvim
+!/.config/iterm2
 !.zshrc
 !.tmux.conf

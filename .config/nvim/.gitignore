@@ -1,4 +1,5 @@
-undos
 .DS_Store
+undos
 bundle
 tags*
+node_modules
