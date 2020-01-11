@@ -119,3 +119,5 @@ fi
 eval $(thefuck --alias)
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+source /Users/djeusette/Library/Preferences/org.dystroy.broot/launcher/bash/br
