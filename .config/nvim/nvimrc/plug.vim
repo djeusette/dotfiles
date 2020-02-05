@@ -69,4 +69,7 @@ Plug 'janko-m/vim-test'
 " Colorschemes
 Plug 'nanotech/jellybeans.vim'
 
+Plug 'mattn/emmet-vim'
+Plug 'easymotion/vim-easymotion'
+
 call plug#end()
