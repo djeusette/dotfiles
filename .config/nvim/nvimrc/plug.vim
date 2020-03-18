@@ -8,6 +8,8 @@
 call plug#begin('~/.config/nvim/bundle')
 
 " Place your Plugs here!
+Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Plug 'Shougo/denite.nvim'
@@ -52,9 +54,6 @@ Plug 'mhinz/vim-startify'
 "Plug 'wokalski/autocomplete-flow'
 "Plug 'Shougo/neosnippet.vim'
 "Plug 'Shougo/neosnippet-snippets'
-
-" CoC setup
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'neomake/neomake'
 
