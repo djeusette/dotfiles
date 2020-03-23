@@ -139,6 +139,10 @@ set wildmenu
 set wildmode=list:longest
 set wildignore=*.swp,*.bak,*.pyc,*.pyo,*.class,*.6,.git,.hg,.svn,*.o,*.a,*.so,*.obj,*.lib,*/.git/*,*/tmp/*,*.zip
 
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 if executable('rg')
   set grepprg=rg\ --color=never
 endif
