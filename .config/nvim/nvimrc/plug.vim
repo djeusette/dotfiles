@@ -11,12 +11,11 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-" Plug 'Shougo/denite.nvim'
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
-Plug 'gregsexton/gitv', {'on': ['Gitv']}
 Plug 'airblade/vim-gitgutter'
 
+" fzf install via HomeBrew
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -33,27 +32,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-dispatch'
-
-if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/defx.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" Plug 'tpope/vim-dispatch'
 
 "Plug 'davidhalter/jedi-vim'
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-startify'
-
-" Do not use with coc.nvim!
-" Deoplete setup
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'wokalski/autocomplete-flow'
-"Plug 'Shougo/neosnippet.vim'
-"Plug 'Shougo/neosnippet-snippets'
 
 Plug 'neomake/neomake'
 
