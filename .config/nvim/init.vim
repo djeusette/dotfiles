@@ -200,6 +200,17 @@ set splitright
 " Split horizontal to the right by default
 set splitbelow
 
+" turn terminal to normal mode with escape
+tnoremap <Esc> <C-\><C-n>
+" start terminal in insert mode
+" au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" open terminal on ctrl+l
+function! OpenTerminal()
+  split term://zsh
+  resize 10
+endfunction
+nnoremap <c-l> :call OpenTerminal()<CR>
+
 " Source the rest of the config, which is broken out into many files
 runtime! nvimrc/*.vim
 

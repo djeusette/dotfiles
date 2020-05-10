@@ -36,7 +36,7 @@ Plug 'tpope/vim-projectionist'
 
 "Plug 'davidhalter/jedi-vim'
 
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-startify'
 
 Plug 'neomake/neomake'
