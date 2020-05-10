@@ -17,7 +17,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-let g:coc_global_extensions = ['coc-elixir', 'coc-diagnostic']
+let g:coc_global_extensions = ['coc-elixir', 'coc-diagnostic', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
