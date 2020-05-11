@@ -32,7 +32,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-projectionist'
-" Plug 'tpope/vim-dispatch'
+" dispatch is used to run tests
+Plug 'tpope/vim-dispatch'
 
 "Plug 'davidhalter/jedi-vim'
 

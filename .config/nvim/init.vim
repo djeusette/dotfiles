@@ -165,7 +165,8 @@ set timeoutlen=300
 set autowriteall
 set autoread " auto reload files
 set mousemodel=popup " Make right mouse button work in gvim
-set hidden " Don't acutally close buffers, just hide them.
+" set hidden " Don't actually close buffers, just hide them.
+set nohidden " actually close buffers
 
 " dictionary: english words first
 " add any text based dictionaries to the list.

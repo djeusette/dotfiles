@@ -2,8 +2,8 @@
 
 let test#strategy = "dispatch"
 
-nnoremap <silent> <Leader>t :TestFile<CR>
-nnoremap <silent> <Leader>T :TestNearest<CR>
-" nnoremap <silent> <Leader>l :TestLast<CR>
-" nnoremap <silent> <Leader>a :TestSuite<CR>
-" nnoremap <silent> <leader>gt :TestVisit<CR>
+nmap <silent> <Leader>tn :TestNearest<CR>
+nmap <silent> <Leader>tf :TestFile<CR>
+nmap <silent> <Leader>ts :TestSuite<CR>
+nmap <silent> <Leader>tl :TestLast<CR>
+nmap <silent> <Leader>tv :TestVisit<CR>

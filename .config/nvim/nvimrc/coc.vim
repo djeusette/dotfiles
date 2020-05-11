@@ -1,5 +1,5 @@
 " if hidden is not set, TextEdit might fail.
-set hidden
+" set hidden
 
 " Some servers have issues with backup files, see #649
 set nobackup
