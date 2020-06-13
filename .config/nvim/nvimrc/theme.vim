@@ -15,14 +15,11 @@ set list listchars=tab:»·,trail:·,nbsp:·
 set diffopt=filler,vertical,context:15
 let g:html_diff_one_file = 1
 
-" We like italics in the terminal, so add some sauce to make sure we get it.
-set t_ZH=[3m
-set t_ZR=[23m
-highlight Comment cterm=italic
-
 colorscheme jellybeans
-let g:jellybeans_use_term_italics = 1
-let g:jellybeans_use_term_background_color = 1
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " set linenumbers on by default
 " When in insert mode, show linear numbers
