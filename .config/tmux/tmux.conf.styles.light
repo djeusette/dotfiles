@@ -1,0 +1,21 @@
+# set the status line's colors
+set -g status-style "fg=#4c4c4b bg=#eeeeed bold"
+
+# set the color of the window list
+setw -g window-status-style "fg=#444444 bg=#d0d0d0"
+
+# set colors for the active window
+setw -g window-status-current-style fg=white,bold,bg=red
+
+# colors for pane borders
+setw -g pane-border-style "fg=#4c4c4b bg=#eeeeed"
+
+# Command / message line
+setw -g message-style "fg=#4c4c4b bg=#eeeeed"
+
+# Status line left side to show Session:window:pane
+set -g status-left-length 40
+set -g status-left "#[fg=green]Session: #S #[fg=yellow]#I #[fg=cyan]#P"
+
+# Status line right side -  50% | 31 Oct 13:37
+set -g status-right "#[fg=cyan]%d %b %R"
