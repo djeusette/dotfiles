@@ -52,6 +52,7 @@ Plug 'janko-m/vim-test'
 
 " Colorschemes
 Plug 'nanotech/jellybeans.vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'

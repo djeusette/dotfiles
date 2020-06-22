@@ -9,13 +9,19 @@ set nowritebackup
 set cmdheight=1
 
 " You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
+set updatetime=500
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
-" always show signcolumns
-set signcolumn=yes
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
 let g:coc_global_extensions = ['coc-elixir', 'coc-diagnostic', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 

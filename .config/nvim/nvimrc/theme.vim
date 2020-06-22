@@ -15,7 +15,19 @@ set list listchars=tab:»·,trail:·,nbsp:·
 set diffopt=filler,vertical,context:15
 let g:html_diff_one_file = 1
 
-colorscheme jellybeans
+" colorscheme jellybeans
+
+" For Papercolor
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'allow_italic': 1
+  \     }
+  \   }
+  \ }
+set background=light
+colorscheme PaperColor
+" End Papercolor
 
 if (has("termguicolors"))
   set termguicolors
