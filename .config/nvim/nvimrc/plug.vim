@@ -54,7 +54,7 @@ Plug 'janko-m/vim-test'
 Plug 'nanotech/jellybeans.vim'
 Plug 'NLKNguyen/papercolor-theme'
 
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
 
 call plug#end()

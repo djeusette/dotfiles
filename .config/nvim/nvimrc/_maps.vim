@@ -8,9 +8,11 @@ let mapleader = " "
 " d/D are for delete
 " <Leader> d/D for cut
 " Same thing for x and X
+" Same thing for x
 "
 nnoremap x "_x
 nnoremap X "_X
+nnoremap c "_c
 nnoremap d "_d
 nnoremap D "_D
 vnoremap d "_d
