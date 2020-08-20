@@ -1,9 +1,14 @@
 " Use ; for commands.
 nnoremap ; :
 
-" Leader
+" Disable any mapping on the space key
+"
+nnoremap <SPACE> <Nop>
+
+" SPACE becomes Leader
 "
 let mapleader = " "
+" let mapleader="\<SPACE>"
 
 " d/D are for delete
 " <Leader> d/D for cut

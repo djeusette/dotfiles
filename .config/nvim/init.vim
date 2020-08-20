@@ -22,7 +22,7 @@ set termencoding=utf-8
 set title " set title of the iterm tab
 
 set switchbuf=useopen
-set laststatus=2          " last window will always have a status line
+set laststatus=2       " last window will always have a status line
 set showcmd            " display incomplete commands
 
 " Enable persistent undo
