@@ -125,3 +125,5 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval $(thefuck --alias)
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+export GPG_TTY=$(tty)
