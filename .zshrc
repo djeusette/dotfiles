@@ -106,6 +106,8 @@ alias vi="nvim"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.local/bin:/usr/local/sbin:$PATH"
 
+# needed for zsh-completions
+# brew install zsh-completions
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   autoload -Uz compinit
@@ -115,7 +117,9 @@ fi
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# . /usr/local/etc/profile.d/z.sh
+# used by z
+# brew install z
+. /usr/local/etc/profile.d/z.sh
 . /usr/local/opt/asdf/asdf.sh
 
 eval $(thefuck --alias)
