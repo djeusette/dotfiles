@@ -57,4 +57,6 @@ Plug 'NLKNguyen/papercolor-theme'
 " Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
 
+Plug 'dense-analysis/ale'
+
 call plug#end()
