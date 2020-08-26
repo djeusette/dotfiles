@@ -58,4 +58,4 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " format your JavaScript / TypeScript / CSS / JSON using Prettier
 " command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Use `:Format` to format current buffer
-" command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocAction('format')

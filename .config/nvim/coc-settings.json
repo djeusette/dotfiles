@@ -4,7 +4,6 @@
     "eelixir": ["mix_credo", "mix_credo_compile"]
   },
   "suggest.minTriggerInputLength": 2,
-  "suggest.snippetIndicator": " ►",
-  "diagnostic.displayByAle": true
+  "suggest.snippetIndicator": " ►"
 }
 
