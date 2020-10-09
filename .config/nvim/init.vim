@@ -66,9 +66,6 @@ autocmd BufReadPost *
 
 augroup END
 
-" Prevent syntax highlighting errors
-set redrawtime=10000
-
 set fileformats=unix,dos,mac " try recognizing line endings in this order
 
 " If you want to ALWAYS use the clipboard for ALL operations (as opposed
