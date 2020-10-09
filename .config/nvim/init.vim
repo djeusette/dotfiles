@@ -22,7 +22,6 @@ set termencoding=utf-8
 set title " set title of the iterm tab
 
 set switchbuf=useopen
-set laststatus=2       " last window will always have a status line
 set showcmd            " display incomplete commands
 
 " Enable persistent undo
@@ -90,15 +89,6 @@ set showmatch
 set noswapfile
 set nobackup " do not keep a backup file, use persistent versions instead
 
-" C opts
-" Kernel style
-"set cinoptions=:0,(0,u0,W1s
-" I use  the default, you should
-" check out the help for cinoptions and
-" tune it to  match your prefered style.
-" :h cinoptions
-set cinoptions+=J
-
 " Keep this many lines above/below the cursor while scrolling.
 set scrolloff=3
 
@@ -113,12 +103,12 @@ set foldcolumn=1
 
 " Big nasty viminfo setup. If you you have a smaller/slower system use the
 " commented viminfo below, it's tuned down.
-" track up to 20,000 files.
+" track up to 10,000 files.
 " store global marks.
 " no more than 500 lines per register are saved
 " 1000 lines of history
 " save the buffer list
-set viminfo='20000,f1,<500,:1000,@1000,/1000,%
+set viminfo='10000,f1,<500,:1000,@1000,/1000,%
 
 " HTML output options
 " Use more modern css
