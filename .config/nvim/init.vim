@@ -13,7 +13,7 @@ runtime nvimrc/nerdcomment.vim
 runtime nvimrc/plug.vim
 
 set lazyredraw   " Don't redraw screen when executing macros
-set history=1000 " keep 1000 lines of command line history
+set history=100 " keep 1000 lines of command line history
 
 " Set our encoding to UTF-8
 set encoding=utf-8
@@ -65,6 +65,9 @@ autocmd BufReadPost *
 \ endif
 
 augroup END
+
+" Prevent syntax highlighting errors
+set redrawtime=10000
 
 set fileformats=unix,dos,mac " try recognizing line endings in this order
 
