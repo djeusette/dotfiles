@@ -47,6 +47,7 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 Plug 'sheerun/vim-polyglot'
+"Plug 'elixir-editors/vim-elixir'
 
 Plug 'janko-m/vim-test'
 
