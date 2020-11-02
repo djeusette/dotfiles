@@ -188,7 +188,7 @@ set splitright
 set splitbelow
 
 " turn terminal to normal mode with escape
-noremap <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
 " start terminal in insert mode
 " au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 " open terminal on ctrl+l
