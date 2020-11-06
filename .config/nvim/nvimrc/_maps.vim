@@ -18,6 +18,7 @@ let mapleader = " "
 nnoremap x "_x
 nnoremap X "_X
 nnoremap c "_c
+vnoremap c "_c
 nnoremap d "_d
 nnoremap D "_D
 vnoremap d "_d
