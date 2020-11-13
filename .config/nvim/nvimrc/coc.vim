@@ -59,3 +59,10 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+
+" Fix coc-tsserver filetype issue
+augroup filetype_jsx
+autocmd!
+autocmd FileType javascript set filetype=javascriptreact
+autocmd FileType typescript set filetype=typescriptreact
+augroup END
