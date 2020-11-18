@@ -43,9 +43,9 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Show list of diagnostics
-nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>cd :<C-u>CocList diagnostics<cr>
 " Show symbol list
-nnoremap <silent> <leader>s :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>cs :<C-u>CocList -I symbols<cr>
 " Show documentation
 nnoremap <silent> <leader>? :call CocAction('doHover')<cr>
 
