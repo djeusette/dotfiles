@@ -23,7 +23,7 @@ else
   set signcolumn=yes
 endif
 
-let g:coc_global_extensions = ['coc-elixir', 'coc-diagnostic', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-highlight']
+let g:coc_global_extensions = ['coc-elixir', 'coc-diagnostic', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-highlight', 'coc-lists']
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -38,19 +38,25 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Show outline of current file
-nnoremap <silent> <leader>co  :<C-u>CocList outline<CR>
+" Show list of diagnostics
+nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
+" Show symbol list
+nnoremap <silent> <leader>s :<C-u>CocList -I symbols<cr>
+" Show documentation
+nnoremap <silent> <leader>? :call CocAction('doHover')<cr>
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>a <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>rn  <Plug>(coc-rename)
 
 " Close the preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
