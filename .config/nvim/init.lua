@@ -105,8 +105,13 @@ g['ale_fixers'] = {
 ['elixir'] = {'mix_format'},
 ['css'] = {'prettier'},
 ['json'] = {'prettier'},
+['typescript'] = {'prettier'},
 ['typescriptreact'] = {'prettier'},
 ['*'] = {'remove_trailing_lines', 'trim_whitespace'},
+}
+g['ale_linters'] = {
+['typescript'] = {'eslint'},
+['typescriptreact'] = {'eslint'},
 }
 g['ale_fix_on_save'] = 1
 g['ale_linters_explicit'] = 1
