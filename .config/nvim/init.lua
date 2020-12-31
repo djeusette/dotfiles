@@ -19,6 +19,24 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- Add lsp diagnostics to quickfix list
+do
+  local method = "textDocument/publishDiagnostics"
+  local default_callback = vim.lsp.callbacks[method]
+  vim.lsp.callbacks[method] = function(err, method, result, client_id)
+    default_callback(err, method, result, client_id)
+    if result and result.diagnostics then
+      for _, v in ipairs(result.diagnostics) do
+        v.bufnr = client_id
+        v.lnum = v.range.start.line + 1
+        v.col = v.range.start.character + 1
+        v.text = v.message
+      end
+      vim.lsp.util.set_qflist(result.diagnostics)
+    end
+  end
+end
+
 -------------------- PLUGINS -------------------------------
 cmd 'packadd paq-nvim'               -- load the package manager
 local paq = require('paq-nvim').paq  -- a convenient alias
@@ -168,7 +186,7 @@ opt('w', 'wrap', true)
 -- opt('w', 'wrap', false)                    -- Disable line wrap
 -- undofile
 opt('o', 'undofile', true)
-opt('o', 'undodir', '~/.config/nvim/undos')
+-- opt('o', 'undodir', '~/.config/nvim/undos')
 opt('o', 'undolevels', 1000)
 opt('o', 'undoreload', 10000)
 
