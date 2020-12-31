@@ -166,6 +166,11 @@ opt('w', 'breakindent', true)
 opt('w', 'linebreak', true)
 opt('w', 'wrap', true)
 -- opt('w', 'wrap', false)                    -- Disable line wrap
+-- undofile
+opt('o', 'undofile', true)
+opt('o', 'undodir', '~/.config/nvim/undos')
+opt('o', 'undolevels', 1000)
+opt('o', 'undoreload', 10000)
 
 -------------------- MAPPINGS ------------------------------
 map('', ';', ':')                 -- Use ; for commands
@@ -213,8 +218,8 @@ map('n', 'X', '"_X')
 map('n', 'c', '"_c')
 map('v', 'c', '"_c')
 
-map('i', '<C-u>', '<C-g>u<C-u>')  -- Make <C-u> undoable
-map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undoable
+-- map('i', '<C-u>', '<C-g>u<C-u>')  -- Make <C-u> undoable
+-- map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undoable
 
 -------------------- TREE-SITTER ---------------------------
 local ts = require 'nvim-treesitter.configs'
