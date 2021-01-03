@@ -19,6 +19,18 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+local function nvim_create_augroups(definitions)
+  for group_name, definition in pairs(definitions) do
+    vim.api.nvim_command('augroup '..group_name)
+    vim.api.nvim_command('autocmd!')
+      for _, def in ipairs(definition) do
+        local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
+        vim.api.nvim_command(command)
+      end
+    vim.api.nvim_command('augroup END')
+  end
+end
+
 -- Add lsp diagnostics to quickfix list
 do
   local method = "textDocument/publishDiagnostics"
@@ -47,7 +59,6 @@ paq {'nvim-treesitter/nvim-treesitter'}
 paq {'neovim/nvim-lspconfig'}
 paq {'junegunn/fzf', hook = fn['fzf#install']}
 paq {'junegunn/fzf.vim'}
-paq {'scrooloose/nerdtree'}
 paq {'scrooloose/nerdcommenter'}
 paq {'neomake/neomake'}
 paq {'ojroques/nvim-lspfuzzy'}
@@ -62,21 +73,24 @@ paq {'tpope/vim-projectionist'}
 -- Elixir specific --
 paq {'elixir-editors/vim-elixir'}
 paq {'tpope/vim-dispatch'}
+paq {'tpope/vim-fugitive'}
+paq {'lambdalisue/fern.vim'}
+paq {'lambdalisue/fern-git-status.vim'}
+paq {'antoinemadec/FixCursorHold.nvim'} -- Workaround the perf bug in neovim https://github.com/neovim/neovim/issues/12587
 
 -------------------- Variables -------------------------------
 g['mapleader'] = ' '                       -- Make SPACE leader
 g['grepprg'] = 'rg --color=never'
+
+-- Disable netrw
+g['loaded_netrw'] = 1
+g['loaded_netrwPlugin'] = 1
 
 -- deoplete
 opt('o', 'completeopt', 'menuone,noinsert,noselect')
 g['deoplete#enable_at_startup'] = 1
 fn['deoplete#custom#option']('ignore_case', false)
 fn['deoplete#custom#option']('max_list', 10)
--- NERDTree --
-g['NERDTreeWinSize'] = 50
-g['NERDTreeQuitOnOpen'] = 1
-g['NERDTreeHijackNetrw'] = 1
-g['NERDTreeShowLineNumbers'] = 1
 -- Papercolor --
 g['PaperColor_Theme_Options'] = {
   ['theme'] = {
@@ -183,17 +197,14 @@ opt('w', 'relativenumber', true)           -- Print relative line number
 opt('w', 'breakindent', true)
 opt('w', 'linebreak', true)
 opt('w', 'wrap', true)
--- opt('w', 'wrap', false)                    -- Disable line wrap
 -- undofile
 opt('o', 'undofile', true)
--- opt('o', 'undodir', '~/.config/nvim/undos')
+-- opt('o', 'undodir', '~/.config/nvim/undos') -- the directory interpolation does not work
 opt('o', 'undolevels', 1000)
 opt('o', 'undoreload', 10000)
 
 -------------------- MAPPINGS ------------------------------
 map('', ';', ':')                 -- Use ; for commands
--- nerdtree
-map('n', '<leader>n', '<cmd>NERDTreeToggle<CR>') -- Toggle NERDTree
 -- built-in
 map('n', '<leader><leader>', '<c-^>') -- Switch between last used buffers
 -- CtrlP
@@ -235,6 +246,8 @@ map('n', 'x', '"_x')
 map('n', 'X', '"_X')
 map('n', 'c', '"_c')
 map('v', 'c', '"_c')
+-- fern
+map('', '<Leader>n', '<cmd>Fern . -reveal=%<CR>', {silent = true})
 
 -- map('i', '<C-u>', '<C-g>u<C-u>')  -- Make <C-u> undoable
 -- map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undoable
@@ -249,9 +262,6 @@ local lspfuzzy = require 'lspfuzzy'
 
 lsp.tsserver.setup {}
 lsp.elixirls.setup {}
--- lsp.ccls.setup {}
--- root_dir is where the LSP server will start: here at the project root otherwise in current folder
--- lsp.pyls.setup {root_dir = lsp.util.root_pattern('.git', fn.getcwd())}
 lspfuzzy.setup {}  -- Make the LSP client use FZF instead of the quickfix list
 
 map('n', '<space>lp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
@@ -277,6 +287,20 @@ function close_buffer()
   if fn.bufnr '' == last_bufnr then cmd 'bp' else cmd 'bn' end
   cmd 'bd #'
 end
+
+function fern_init()
+  vim.api.nvim_exec(
+  [[
+    nmap <buffer> n <Plug>(fern-action-new-path)
+    nmap <buffer> r <Plug>(fern-action-reload)
+  ]], false)
+end
+
+nvim_create_augroups({
+  FernGroup = {
+    {"FileType", "fern", [[lua fern_init()]]};
+  }
+})
 
 -- Highlight yanked text
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode
