@@ -247,7 +247,7 @@ map('n', 'X', '"_X')
 map('n', 'c', '"_c')
 map('v', 'c', '"_c')
 -- fern
-map('', '<Leader>n', '<cmd>Fern . -reveal=%<CR>', {silent = true})
+map('', '<Leader>n', '<cmd>Fern . -drawer -toggle -reveal=%<CR>', {silent = true})
 
 -- map('i', '<C-u>', '<C-g>u<C-u>')  -- Make <C-u> undoable
 -- map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undoable
@@ -260,8 +260,8 @@ ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
 local lsp = require 'lspconfig'
 local lspfuzzy = require 'lspfuzzy'
 
-lsp.tsserver.setup {}
-lsp.elixirls.setup {}
+lsp.tsserver.setup {} -- LSP setup for Typescript
+lsp.elixirls.setup {} -- LSP setup for Elixir
 lspfuzzy.setup {}  -- Make the LSP client use FZF instead of the quickfix list
 
 map('n', '<space>lp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
