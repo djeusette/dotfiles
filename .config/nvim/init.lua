@@ -77,6 +77,7 @@ paq {'tpope/vim-fugitive'}
 paq {'lambdalisue/fern.vim'}
 paq {'lambdalisue/fern-git-status.vim'}
 paq {'antoinemadec/FixCursorHold.nvim'} -- Workaround the perf bug in neovim https://github.com/neovim/neovim/issues/12587
+paq {'codota/tabnine-vim'}
 
 -------------------- Variables -------------------------------
 g['mapleader'] = ' '                       -- Make SPACE leader
@@ -159,7 +160,7 @@ opt('o', 'autoread', true)              -- Reload file automatically
 opt('o', 'background', 'light')              -- background for papercolor
 opt('w', 'cursorline', true)                -- Enable line highlighting
 opt('w', 'cursorcolumn', true)              -- Enable column highlighting
-opt('w', 'signcolumn', 'yes')              -- Show sign column
+opt('w', 'signcolumn', 'number')              -- Show sign column
 opt('b', 'swapfile', false)                     -- Do not use swap files
 opt('o', 'backup', false)                       -- Do not keep a backup file
 opt('b', 'textwidth', 80)              -- Specify the text width
@@ -233,7 +234,7 @@ map('n', '<leader>w', '<cmd>lua close_buffer()<CR>')
 -- <Tab> to navigate the completion menu
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
-map('i', '<CR>', 'pumvisible() ? "\\<C-y>" : "\\<C-g>u\\<CR>"', {expr = true})
+map('i', '<CR>', 'pumvisible() ? "\\<C-y><CR>" : "\\<C-g>u\\<CR>"', {expr = true})
 map('n', '<C-h>', '<cmd>noh<CR>')    -- Clear highlights
 -- Delete vs cut --
 map('n', 'd', '"_d')
