@@ -90,7 +90,7 @@ g['loaded_netrw'] = 1
 g['loaded_netrwPlugin'] = 1
 
 -- deoplete
-opt('o', 'completeopt', 'menuone,noinsert,noselect')
+opt('o', 'completeopt', 'menuone,preview,noinsert,noselect')
 g['deoplete#enable_at_startup'] = 1
 fn['deoplete#custom#option']('ignore_case', false)
 fn['deoplete#custom#option']('max_list', 10)
@@ -236,7 +236,7 @@ map('n', '<leader>w', '<cmd>lua close_buffer()<CR>')
 -- <Tab> to navigate the completion menu
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
-map('i', '<CR>', 'pumvisible() ? "\\<C-y><CR>" : "\\<C-g>u\\<CR>"', {expr = true})
+map('i', '<CR>', 'pumvisible() ? "\\<C-y>\\<CR>" : "\\<C-g>u\\<CR>"', {expr = true})
 map('n', '<C-h>', '<cmd>noh<CR>')    -- Clear highlights
 -- Delete vs cut --
 map('n', 'd', '"_d')
