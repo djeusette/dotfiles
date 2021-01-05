@@ -77,7 +77,9 @@ paq {'tpope/vim-fugitive'}
 paq {'lambdalisue/fern.vim'}
 paq {'lambdalisue/fern-git-status.vim'}
 paq {'antoinemadec/FixCursorHold.nvim'} -- Workaround the perf bug in neovim https://github.com/neovim/neovim/issues/12587
+-- TabNine with deoplete support
 paq {'codota/tabnine-vim'}
+paq {'tbodt/deoplete-tabnine', hook = './install.sh'}
 
 -------------------- Variables -------------------------------
 g['mapleader'] = ' '                       -- Make SPACE leader
@@ -262,7 +264,9 @@ local lsp = require 'lspconfig'
 local lspfuzzy = require 'lspfuzzy'
 
 lsp.tsserver.setup {} -- LSP setup for Typescript
-lsp.elixirls.setup {} -- LSP setup for Elixir
+lsp.elixirls.setup {
+  cmd = { "/Users/djeusette/Code/elixir-ls/release/language_server.sh" };
+} -- LSP setup for Elixir
 lspfuzzy.setup {}  -- Make the LSP client use FZF instead of the quickfix list
 
 map('n', '<space>lp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
