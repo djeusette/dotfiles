@@ -44,7 +44,7 @@ do
         v.col = v.range.start.character + 1
         v.text = v.message
       end
-      vim.lsp.util.set_qflist(result.diagnostics)
+      vim.lsp.util.set_loclist(result.diagnostics)
     end
   end
 end
@@ -94,6 +94,8 @@ opt('o', 'completeopt', 'menuone,preview,noinsert,noselect')
 g['deoplete#enable_at_startup'] = 1
 fn['deoplete#custom#option']('ignore_case', false)
 fn['deoplete#custom#option']('max_list', 10)
+fn['deoplete#custom#option']('auto_complete_delay', 300)
+fn['deoplete#custom#option']('auto_refresh_delay', 500)
 -- Papercolor --
 g['PaperColor_Theme_Options'] = {
   ['theme'] = {
@@ -251,6 +253,11 @@ map('n', 'c', '"_c')
 map('v', 'c', '"_c')
 -- fern
 map('', '<Leader>n', '<cmd>Fern . -drawer -toggle -reveal=%<CR>', {silent = true})
+-- resize
+map('n', '<Leader>+', ':exe "resize " .  (winheight(0) * 3/2)<CR>', { silent = true })
+map('n', '<Leader>-', ':exe "resize " .  (winheight(0) * 2/3)<CR>', { silent = true })
+map('n', '<Leader>>', ':exe "vertical resize " .  (winwidth(0) * 4/3)<CR>', { silent = true })
+map('n', '<Leader><', ':exe "vertical resize " .  (winwidth(0) * 3/4)<CR>', { silent = true })
 
 -- map('i', '<C-u>', '<C-g>u<C-u>')  -- Make <C-u> undoable
 -- map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undoable
