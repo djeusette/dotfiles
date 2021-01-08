@@ -31,24 +31,6 @@ local function nvim_create_augroups(definitions)
   end
 end
 
--- Add lsp diagnostics to quickfix list
-do
-  local method = "textDocument/publishDiagnostics"
-  local default_callback = vim.lsp.callbacks[method]
-  vim.lsp.callbacks[method] = function(err, method, result, client_id)
-    default_callback(err, method, result, client_id)
-    if result and result.diagnostics then
-      for _, v in ipairs(result.diagnostics) do
-        v.bufnr = client_id
-        v.lnum = v.range.start.line + 1
-        v.col = v.range.start.character + 1
-        v.text = v.message
-      end
-      vim.lsp.util.set_loclist(result.diagnostics)
-    end
-  end
-end
-
 -------------------- PLUGINS -------------------------------
 cmd 'packadd paq-nvim'               -- load the package manager
 local paq = require('paq-nvim').paq  -- a convenient alias
@@ -125,14 +107,14 @@ g['gitgutter_highlight_lines'] = 0
 g['ctrlp_user_command']  = 'rg %s --files --hidden --glob "!.git/*"'
 g['ctrlp_use_caching'] = 0
 -- fzf --
-local FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+vim.env.FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 vim.api.nvim_command('command! -bang -nargs=* Rg call fzf#vim#grep(\'rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --follow --color=always --glob "!.git/*" \'.shellescape(<q-args>), 1, <bang>0)')
 g['fzf_action'] = {
   ['ctrl-t'] = 'tab split',
   ['ctrl-s'] = 'split',
   ['ctrl-v'] = 'vsplit'
 }
-g['fzf_preview_window'] = {'right:40%:hidden', 'ctrl-/'}
+g['fzf_preview_window'] = {'down:40%:+{2}-/2'}
 -- nerdcommenter --
 g['NERDSpaceDelims'] = 1
 -- vim-test --
@@ -142,13 +124,9 @@ g['ale_fixers'] = {
 ['elixir'] = {'mix_format'},
 ['css'] = {'prettier'},
 ['json'] = {'prettier'},
-['typescript'] = {'prettier'},
-['typescriptreact'] = {'prettier'},
+['typescript'] = {'prettier', 'eslint'},
+['typescriptreact'] = {'prettier', 'eslint'},
 ['*'] = {'remove_trailing_lines', 'trim_whitespace'},
-}
-g['ale_linters'] = {
-['typescript'] = {'eslint'},
-['typescriptreact'] = {'eslint'},
 }
 g['ale_fix_on_save'] = 1
 g['ale_linters_explicit'] = 1
@@ -270,21 +248,104 @@ ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
 local lsp = require 'lspconfig'
 local lspfuzzy = require 'lspfuzzy'
 
-lsp.tsserver.setup {} -- LSP setup for Typescript
+-- LSP setup for Typescript
+lsp.tsserver.setup {}
+-- LSP setup for Elixir
 lsp.elixirls.setup {
   cmd = { "/Users/djeusette/Code/elixir-ls/release/language_server.sh" };
-} -- LSP setup for Elixir
-lspfuzzy.setup {}  -- Make the LSP client use FZF instead of the quickfix list
+}
 
-map('n', '<space>lp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-map('n', '<space>ln', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-map('n', '<space>la', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-map('n', '<space>ld', '<cmd>lua vim.lsp.buf.definition()<CR>')
-map('n', '<space>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-map('n', '<space>lh', '<cmd>lua vim.lsp.buf.hover()<CR>')
-map('n', '<space>lm', '<cmd>lua vim.lsp.buf.rename()<CR>')
-map('n', '<space>lr', '<cmd>lua vim.lsp.buf.references()<CR>')
-map('n', '<space>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+-- https://github.com/iamcco/diagnostic-languageserver
+-- for eslint and prettier
+lsp.diagnosticls.setup {
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact"
+  },
+  init_options = {
+    linters = {
+      eslint = {
+        command = "./node_modules/.bin/eslint",
+        rootPatterns = {"package.json", ".git"},
+        debounce = 100,
+        args = {
+          "--stdin",
+          "--stdin-filename",
+          "%filepath",
+          "--format",
+          "json"
+        },
+        sourceName = "eslint",
+        parseJson = {
+          errorsRoot = "[0].messages",
+          line = "line",
+          column = "column",
+          endLine = "endLine",
+          endColumn = "endColumn",
+          message = "${message} [${ruleId}]",
+          security = "severity"
+        },
+        securities = {
+          [2] = "error",
+          [1] = "warning"
+        }
+      },
+    },
+    filetypes = {
+      javascript = "eslint",
+      javascriptreact = "eslint",
+      ["javascript.jsx"] = "eslint",
+      typescript = "eslint",
+      ["typescript.tsx"] = "eslint",
+      typescriptreact = "eslint"
+    },
+    formatFiletypes = {
+      javascript = "prettier",
+      javascriptreact = "prettier",
+      ["javascript.jsx"] = "prettier",
+      typescript = "prettier",
+      ["typescript.tsx"] = "prettier",
+      typescriptreact = "prettier"
+    },
+    formatters = {
+      prettier = {
+        command = "./node_modules/.bin/prettier",
+        args = {"--stdin", "--stdin-filepath", "%filepath"},
+        rootPatterns = {
+          ".prettierrc",
+          ".prettierrc.json",
+          ".prettierrc.toml",
+          ".prettierrc.json",
+          ".prettierrc.yml",
+          ".prettierrc.yaml",
+          ".prettierrc.json5",
+          ".prettierrc.js",
+          ".prettierrc.cjs",
+          "prettier.config.js",
+          "prettier.config.cjs"
+        }
+      }
+    }
+  }
+}
+
+-- Make the LSP client use FZF instead of the quickfix list
+lspfuzzy.setup {}
+
+map('n', '<leader>lp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+map('n', '<leader>ln', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+map('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+map('n', '<leader>ld', '<cmd>lua vim.lsp.buf.definition()<CR>')
+map('n', '<leader>lg', '<cmd>LspDiagnosticsAll<CR>')
+map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+map('n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>')
+map('n', '<leader>lm', '<cmd>lua vim.lsp.buf.rename()<CR>')
+map('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>')
+map('n', '<leader>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 
 -------------------- COMMANDS ------------------------------
 function open_terminal()
