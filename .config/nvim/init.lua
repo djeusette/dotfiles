@@ -75,9 +75,13 @@ g['loaded_netrwPlugin'] = 1
 opt('o', 'completeopt', 'menuone,preview,noinsert,noselect')
 g['deoplete#enable_at_startup'] = 1
 fn['deoplete#custom#option']('ignore_case', false)
-fn['deoplete#custom#option']('max_list', 10)
+fn['deoplete#custom#option']('max_list', 15)
 fn['deoplete#custom#option']('auto_complete_delay', 300)
 fn['deoplete#custom#option']('auto_refresh_delay', 500)
+fn['deoplete#custom#var']('tabnine', {
+  ['line_limit'] = 500,
+  ['max_num_results'] = 5,
+})
 -- Papercolor --
 g['PaperColor_Theme_Options'] = {
   ['theme'] = {
@@ -142,7 +146,7 @@ opt('o', 'autoread', true)              -- Reload file automatically
 opt('o', 'background', 'light')              -- background for papercolor
 opt('w', 'cursorline', true)                -- Enable line highlighting
 opt('w', 'cursorcolumn', true)              -- Enable column highlighting
-opt('w', 'signcolumn', 'number')              -- Show sign column
+opt('w', 'signcolumn', 'yes')              -- Show sign column
 opt('b', 'swapfile', false)                     -- Do not use swap files
 opt('o', 'backup', false)                       -- Do not keep a backup file
 opt('b', 'textwidth', 80)              -- Specify the text width
@@ -185,6 +189,8 @@ opt('o', 'undofile', true)
 -- opt('o', 'undodir', '~/.config/nvim/undos') -- the directory interpolation does not work
 opt('o', 'undolevels', 1000)
 opt('o', 'undoreload', 10000)
+-- Time to activate CusorHold
+-- opt('o', 'updatetime', 300)
 
 -------------------- MAPPINGS ------------------------------
 map('', ';', ':')                 -- Use ; for commands
@@ -372,6 +378,13 @@ end
 nvim_create_augroups({
   FernGroup = {
     {"FileType", "fern", [[lua fern_init()]]};
+  }
+})
+
+-- Show diagnostic popup on cursor hover
+nvim_create_augroups({
+  DiagnosticsOnHold = {
+    {"CursorHold", "*", [[lua vim.lsp.diagnostic.show_line_diagnostics()]]};
   }
 })
 
