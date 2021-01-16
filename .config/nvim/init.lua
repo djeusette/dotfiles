@@ -352,6 +352,7 @@ map('n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>')
 map('n', '<leader>lm', '<cmd>lua vim.lsp.buf.rename()<CR>')
 map('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>')
 map('n', '<leader>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+map('n', '<leader>lc', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 
 -------------------- COMMANDS ------------------------------
 function open_terminal()
@@ -382,11 +383,11 @@ nvim_create_augroups({
 })
 
 -- Show diagnostic popup on cursor hover
-nvim_create_augroups({
-  DiagnosticsOnHold = {
-    {"CursorHold", "*", [[lua vim.lsp.diagnostic.show_line_diagnostics()]]};
-  }
-})
+-- nvim_create_augroups({
+--   DiagnosticsOnHold = {
+--     {"CursorHold", "*", [[lua vim.lsp.diagnostic.show_line_diagnostics()]]};
+--   }
+-- })
 
 -- Highlight yanked text
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode
