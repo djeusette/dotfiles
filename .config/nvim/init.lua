@@ -125,12 +125,10 @@ g['NERDSpaceDelims'] = 1
 g['test#strategy'] = 'dispatch'
 -- ale --
 g['ale_fixers'] = {
-['elixir'] = {'mix_format'},
 ['css'] = {'prettier'},
 ['json'] = {'prettier'},
 ['typescript'] = {'prettier', 'eslint'},
 ['typescriptreact'] = {'prettier', 'eslint'},
-['*'] = {'remove_trailing_lines', 'trim_whitespace'},
 }
 g['ale_fix_on_save'] = 1
 g['ale_linters_explicit'] = 1
@@ -382,12 +380,26 @@ nvim_create_augroups({
   }
 })
 
--- Show diagnostic popup on cursor hover
+nvim_create_augroups({
+  RunLspFormat = {
+    {"BufWritePre", "*", [[lua vim.lsp.buf.formatting()]]};
+  }
+})
+
+nvim_create_augroups({
+  RemoveTrailingWhitespaces = {
+    {"BufWritePre", "*", [[:%s/\s\+$//e]]};
+  }
+})
+
 -- nvim_create_augroups({
+-- Show diagnostic popup on cursor hover
 --   DiagnosticsOnHold = {
 --     {"CursorHold", "*", [[lua vim.lsp.diagnostic.show_line_diagnostics()]]};
 --   }
--- })
+-- }
+
+
 
 -- Highlight yanked text
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode
