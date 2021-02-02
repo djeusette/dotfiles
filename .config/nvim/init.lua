@@ -45,12 +45,10 @@ paq {'scrooloose/nerdcommenter'}
 paq {'neomake/neomake'}
 paq {'ojroques/nvim-lspfuzzy'}
 paq {'NLKNguyen/papercolor-theme'}
-paq {'vim-airline/vim-airline'}
-paq {'vim-airline/vim-airline-themes'}
+paq {'hoob3rt/lualine.nvim'}
 paq {'airblade/vim-gitgutter'}
 paq {'ctrlpvim/ctrlp.vim'}
 paq {'vim-test/vim-test'}
-paq {'dense-analysis/ale'}
 paq {'tpope/vim-projectionist'}
 -- Elixir specific --
 paq {'elixir-editors/vim-elixir'}
@@ -96,12 +94,7 @@ g['neomake_list_height'] = 10
 g['neomake_elixir_enabled_makers'] = {'credo'}
 g['neomake_markdown_enabled_makers'] = {}
 fn['neomake#configure#automake']('rw', 1000)
--- vim-airline --
-g['airline#extensions#tabline#enabled'] = 1
-g['airline#extensions#tabline#left_sep'] = ' '
-g['airline#extensions#tabline#left_alt_sep'] = '|'
-g['airline#extensions#tabline#formatter'] = 'unique_tail_improved'
-g['airline_theme'] ='papercolor'
+
 -- vim-gitgutter --
 g['gitgutter_max_signs'] = 500
 g['gitgutter_override_sign_column_highlight'] = 0
@@ -123,16 +116,6 @@ g['fzf_preview_window'] = {'down:40%:+{2}-/2'}
 g['NERDSpaceDelims'] = 1
 -- vim-test --
 g['test#strategy'] = 'dispatch'
--- ale --
-g['ale_fixers'] = {
-['css'] = {'prettier'},
-['json'] = {'prettier'},
-['typescript'] = {'prettier', 'eslint'},
-['typescriptreact'] = {'prettier', 'eslint'},
-}
-g['ale_fix_on_save'] = 1
-g['ale_linters_explicit'] = 1
-g['ale_disable_lsp'] = 1
 
 -------------------- OPTIONS -------------------------------
 local indent = 2
@@ -243,6 +226,10 @@ map('n', '<Leader><', ':exe "vertical resize " .  (winwidth(0) * 3/4)<CR>', { si
 
 -- map('i', '<C-u>', '<C-g>u<C-u>')  -- Make <C-u> undoable
 -- map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undoable
+
+-- Lualine --
+local lualine = require('lualine')
+lualine.status()
 
 -------------------- TREE-SITTER ---------------------------
 local ts = require 'nvim-treesitter.configs'
@@ -398,7 +385,6 @@ nvim_create_augroups({
 --     {"CursorHold", "*", [[lua vim.lsp.diagnostic.show_line_diagnostics()]]};
 --   }
 -- }
-
 
 
 -- Highlight yanked text
