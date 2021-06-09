@@ -55,6 +55,7 @@ opt('w', 'cursorcolumn', true)              -- Enable column highlighting
 opt('w', 'signcolumn', 'yes')              -- Show sign column
 opt('b', 'swapfile', false)                     -- Do not use swap files
 opt('o', 'backup', false)                       -- Do not keep a backup file
+opt('o', 'cmdheight', 2)                  -- Give more space for displaying messages
 opt('b', 'textwidth', 80)              -- Specify the text width
 opt('w', 'colorcolumn', '+1')              -- Enable column highlighting
 -- opt('o', 'switchbuf', 'useopen')           -- Switch buffers
@@ -96,7 +97,9 @@ opt('o', 'undofile', true)
 opt('o', 'undolevels', 1000)
 opt('o', 'undoreload', 10000)
 -- Set completeopt to have a better completion experience
-opt('o', 'completeopt', 'menuone,noinsert,noselect')
+opt('o', 'completeopt', 'menuone,noselect')
+-- Reduce updatetime
+opt('o', 'updatetime', 1000)
 -- Avoid showing message extra message when using completion
 cmd('set shortmess+=c')
 
@@ -115,7 +118,7 @@ nvim_create_augroups({
   RemoveTrailingWhitespaces = {
     {"BufWritePre", "*", [[:%s/\s\+$//e]]};
   },
-  Format = {
-    {"BufWritePre", "*", [[lua vim.lsp.buf.formatting_sync(nil, 2000)]]};
+  Highlight = {
+    {"CursorHold", "*", [[silent call CocActionAsync('highlight')]]}
   }
 })

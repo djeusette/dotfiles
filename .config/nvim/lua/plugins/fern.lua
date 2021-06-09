@@ -1,7 +1,7 @@
 function fern_init()
   vim.api.nvim_exec(
   [[
-    nmap <buffer> n <Plug>(fern-action-new-path)
+    nmap <buffer> N <Plug>(fern-action-new-path)
     nmap <buffer> r <Plug>(fern-action-reload)
   ]], false)
 end

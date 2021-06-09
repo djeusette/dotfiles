@@ -16,12 +16,12 @@ vim.api.nvim_set_keymap('', ';', ':', {noremap=true})
 -- Switch between last used buffers
 vim.api.nvim_set_keymap('n', '<leader><leader>', '<c-^>', {noremap=true})
 -- Use <Tab> and <S-Tab> to navigate through popup menu
-vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {noremap=true, expr = true})
-vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {noremap=true, expr = true})
-vim.api.nvim_set_keymap('i', '<CR>', 'pumvisible() ? "\\<C-y>\\<CR>" : "\\<C-g>u\\<CR>"', {noremap=true, expr = true})
+-- vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {noremap=true, expr = true})
+-- vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {noremap=true, expr = true})
+-- vim.api.nvim_set_keymap('i', '<CR>', 'pumvisible() ? "\\<C-y>\\<CR>" : "\\<C-g>u\\<CR>"', {noremap=true, expr = true})
 
 -- turn terminal to normal mode with escape
-vim.api.nvim_set_keymap('t',  '<Esc>', '<C-\\><C-n>', {noremap=true}) 
+vim.api.nvim_set_keymap('t',  '<Esc>', '<C-\\><C-n>', {noremap=true})
 -- open terminal
 vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>lua open_terminal()<CR>', {noremap=true})
 
