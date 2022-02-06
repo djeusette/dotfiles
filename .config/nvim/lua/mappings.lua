@@ -47,6 +47,8 @@ vim.api.nvim_set_keymap('n', 'x', '"_x', {noremap=true})
 vim.api.nvim_set_keymap('n', 'X', '"_X', {noremap=true})
 vim.api.nvim_set_keymap('n', 'c', '"_c', {noremap=true})
 vim.api.nvim_set_keymap('v', 'c', '"_c', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>c', '"+c', {noremap=true})
+vim.api.nvim_set_keymap('v', '<leader>c', '"+c', {noremap=true})
 
 -- Clear highlights
 vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>noh<CR>', {noremap=true})
