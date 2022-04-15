@@ -15,10 +15,35 @@ lvim.colorscheme = "onedarker"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
--- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
--- ; can be used instead of : in normal mode
-lvim.keys.normal_mode[";"] = ":"
+
+lvim.keys.normal_mode = {
+  ["<C-s>"] = ":w<cr>",
+  -- ; can be used instead of : in normal mode
+  [";"] = ":",
+  -- Cut vs Delete
+  ["d"] = '"_d',
+  ["D"] = '"_D',
+  ["x"] = '"_x',
+  ["X"] = '"_X',
+  ["c"] = '"_c',
+  ["C"] = '"_C',
+  ["<Space>d"] = '"+d',
+  ["<Space>D"] = '"+D',
+  ["<Space>c"] = '"+c',
+  ["<Space>C"] = '"+C'
+}
+
+lvim.keys.visual_mode = {
+  -- Cut vs Delete
+  ["d"] = '"_d',
+  ["c"] = '"_c',
+  ["C"] = '"_C',
+  ["<Space>d"] = '"+d',
+  ["<Space>D"] = '"+D',
+  ["<Space>c"] = '"+c',
+  ["<Space>C"] = '"+C'
+}
+
 
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
@@ -57,6 +82,10 @@ vim.g['test#strategy'] = 'dispatch'
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["c"] = {}
+
+lvim.builtin.which_key.mappings["x"] = { "<cmd>BufferKill<CR>", "Close Buffer" }
+
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Test",
   n = { "<cmd>TestNearest<CR>", "Nearest" },
