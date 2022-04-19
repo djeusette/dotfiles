@@ -16,33 +16,29 @@ lvim.colorscheme = "onedarker"
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 
-lvim.keys.normal_mode = {
-  ["<C-s>"] = ":w<cr>",
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
   -- ; can be used instead of : in normal mode
-  [";"] = ":",
+lvim.keys.normal_mode[";"] = ":"
   -- Cut vs Delete
-  ["d"] = '"_d',
-  ["D"] = '"_D',
-  ["x"] = '"_x',
-  ["X"] = '"_X',
-  ["c"] = '"_c',
-  ["C"] = '"_C',
-  ["<Space>d"] = '"+d',
-  ["<Space>D"] = '"+D',
-  ["<Space>c"] = '"+c',
-  ["<Space>C"] = '"+C'
-}
+lvim.keys.normal_mode["d"] = '"_d'
+lvim.keys.normal_mode["D"] = '"_D'
+lvim.keys.normal_mode["x"] = '"_x'
+lvim.keys.normal_mode["X"] = '"_X'
+lvim.keys.normal_mode["c"] = '"_c'
+lvim.keys.normal_mode["C"] = '"_C'
+lvim.keys.normal_mode["<Space>d"] = '"+d'
+lvim.keys.normal_mode["<Space>D"] = '"+D'
+lvim.keys.normal_mode["<Space>c"] = '"+c'
+lvim.keys.normal_mode["<Space>C"] = '"+C'
 
-lvim.keys.visual_mode = {
   -- Cut vs Delete
-  ["d"] = '"_d',
-  ["c"] = '"_c',
-  ["C"] = '"_C',
-  ["<Space>d"] = '"+d',
-  ["<Space>D"] = '"+D',
-  ["<Space>c"] = '"+c',
-  ["<Space>C"] = '"+C'
-}
+lvim.keys.visual_mode["d"] = '"_d'
+lvim.keys.visual_mode["c"] = '"_c'
+lvim.keys.visual_mode["C"] = '"_C'
+lvim.keys.visual_mode["<Space>d"] = '"+d'
+lvim.keys.visual_mode["<Space>D"] = '"+D'
+lvim.keys.visual_mode["<Space>c"] = '"+c'
+lvim.keys.visual_mode["<Space>C"] = '"+C'
 
 
 -- unmap a default keymapping
@@ -97,7 +93,8 @@ lvim.builtin.which_key.mappings["t"] = {
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
@@ -195,13 +192,13 @@ lvim.plugins = {
 
 local tabnine = require('cmp_tabnine.config')
 tabnine:setup({
-	max_lines = 1000;
-	max_num_results = 20;
-	sort = true;
-	run_on_every_keystroke = true;
-	snippet_placeholder = '..';
-	ignored_file_types = { -- default is not to ignore
-		-- uncomment to ignore in lua:
-		-- lua = true
-	};
+  max_lines = 1000;
+  max_num_results = 20;
+  sort = true;
+  run_on_every_keystroke = true;
+  snippet_placeholder = '..';
+  ignored_file_types = { -- default is not to ignore
+    -- uncomment to ignore in lua:
+    -- lua = true
+  };
 })
