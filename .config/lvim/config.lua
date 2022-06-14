@@ -17,9 +17,9 @@ lvim.colorscheme = "onedarker"
 lvim.leader = "space"
 
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-  -- ; can be used instead of : in normal mode
+-- ; can be used instead of : in normal mode
 lvim.keys.normal_mode[";"] = ":"
-  -- Cut vs Delete
+-- Cut vs Delete
 lvim.keys.normal_mode["d"] = '"_d'
 lvim.keys.normal_mode["D"] = '"_D'
 lvim.keys.normal_mode["x"] = '"_x'
@@ -31,7 +31,7 @@ lvim.keys.normal_mode["<Space>D"] = '"+D'
 lvim.keys.normal_mode["<Space>c"] = '"+c'
 lvim.keys.normal_mode["<Space>C"] = '"+C'
 
-  -- Cut vs Delete
+-- Cut vs Delete
 lvim.keys.visual_mode["d"] = '"_d'
 lvim.keys.visual_mode["c"] = '"_c'
 lvim.keys.visual_mode["C"] = '"_C'
@@ -98,7 +98,6 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -111,6 +110,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "python",
   "ruby",
   "typescript",
+  "tsx",
   "css",
   "rust",
   "java",
@@ -179,10 +179,10 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  {"tpope/vim-projectionist"},
-  {'vim-test/vim-test'},
-  {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}},
-  {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+  { "tpope/vim-projectionist" },
+  { 'vim-test/vim-test' },
+  { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } },
+  { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
