@@ -218,7 +218,8 @@ lvim.plugins = {
   { "tpope/vim-projectionist" },
   { 'vim-test/vim-test' },
   { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } },
-  { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+  { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' },
+  { 'github/copilot.vim' }
 }
 
 local tabnine = require('cmp_tabnine.config')
