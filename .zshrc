@@ -123,5 +123,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 
 export GPG_TTY=$(tty)
 
+export PATH=~/.local/bin:$PATH
+
 # Note: you might need to run sudo chmod -R 755 /opt/homebrew/share in order to
 # get rid of compinit insecure directories warning
