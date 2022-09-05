@@ -110,12 +110,33 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh-syntax-highlighting
+if test -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+if test -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; then 
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# zsh-autosuggestions
+if test -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh; then
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+if test -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh; then 
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 # used by z
 # brew install z
-. /opt/homebrew/etc/profile.d/z.sh
+if test -f /opt/homebrew/etc/profile.d/z.sh; then
+  . /opt/homebrew/etc/profile.d/z.sh
+fi
+
+if test -f /usr/local/etc/profile.d/z.sh; then 
+  . /usr/local/etc/profile.d/z.sh
+fi
 
 eval $(thefuck --alias)
 
