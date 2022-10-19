@@ -242,16 +242,19 @@ lvim.plugins = {
     event = { "VimEnter" },
     config = function()
       vim.defer_fn(function()
-        require("copilot").setup {
-          plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
-        }
+        require("copilot").setup()
       end, 100)
     end,
   },
   { "zbirenbaum/copilot-cmp",
     after = { "copilot.lua", "nvim-cmp" },
-  }
+  },
 }
+
+-- required copilot config
+lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+--
 
 local tabnine = require('cmp_tabnine.config')
 tabnine:setup({
