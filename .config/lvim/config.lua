@@ -8,6 +8,10 @@ an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
+-- FIX ISSUE with pattern matching
+-- see: https://github.com/LunarVim/LunarVim/issues/3305
+lvim.builtin.breadcrumbs.active = false
+
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
@@ -33,19 +37,19 @@ lvim.keys.normal_mode["x"] = '"_x'
 lvim.keys.normal_mode["X"] = '"_X'
 lvim.keys.normal_mode["c"] = '"_c'
 lvim.keys.normal_mode["C"] = '"_C'
-lvim.keys.normal_mode["<Space>d"] = '"+d'
-lvim.keys.normal_mode["<Space>D"] = '"+D'
-lvim.keys.normal_mode["<Space>c"] = '"+c'
-lvim.keys.normal_mode["<Space>C"] = '"+C'
+lvim.keys.normal_mode[",d"] = '"+d'
+lvim.keys.normal_mode[",D"] = '"+D'
+lvim.keys.normal_mode[",c"] = '"+c'
+lvim.keys.normal_mode[",C"] = '"+C'
 
 -- Cut vs Delete
 lvim.keys.visual_mode["d"] = '"_d'
 lvim.keys.visual_mode["c"] = '"_c'
 lvim.keys.visual_mode["C"] = '"_C'
-lvim.keys.visual_mode["<Space>d"] = '"+d'
-lvim.keys.visual_mode["<Space>D"] = '"+D'
-lvim.keys.visual_mode["<Space>c"] = '"+c'
-lvim.keys.visual_mode["<Space>C"] = '"+C'
+lvim.keys.visual_mode[",d"] = '"+d'
+lvim.keys.visual_mode[",D"] = '"+D'
+lvim.keys.visual_mode[",c"] = '"+c'
+lvim.keys.visual_mode[",C"] = '"+C'
 
 -- Disable treesitter for Telescope previews as there's a perf regression
 -- in the treesitter version used in neovim 0.6.1
@@ -94,9 +98,9 @@ lvim.keys.visual_mode["<Space>C"] = '"+C'
 --   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 -- }
 
-lvim.builtin.which_key.mappings["c"] = {}
+-- lvim.builtin.which_key.mappings["c"] = nil
 
-lvim.builtin.which_key.mappings["x"] = { "<cmd>BufferKill<CR>", "Close Buffer" }
+-- lvim.builtin.which_key.mappings["x"] = { "<cmd>BufferKill<CR>", "Close Buffer" }
 
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Test",
@@ -141,10 +145,12 @@ lvim.builtin.treesitter.highlight.enable = true
 -- generic LSP settings
 
 -- -- make sure server will always be installed even if the server is in skipped_servers list
--- lvim.lsp.installer.setup.ensure_installed = {
---     "sumneko_lua",
---     "jsonls",
--- }
+lvim.lsp.installer.setup.ensure_installed = {
+  -- "sumneko_lua",
+  -- "jsonls",
+  "elixir",
+  "ruby"
+}
 -- -- change UI setting of `LspInstallInfo`
 -- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
 -- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
@@ -244,18 +250,20 @@ lvim.plugins = {
     },
     ft = { "fugitive" } },
   -- To disable when setup
-  -- { 'github/copilot.vim' },
+  { 'github/copilot.vim' },
   { "zbirenbaum/copilot.lua",
     event = { "VimEnter" },
     config = function()
       vim.defer_fn(function()
-        require("copilot").setup()
+        require("copilot").setup {
+          plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
+        }
       end, 100)
     end,
   },
   { "zbirenbaum/copilot-cmp",
     after = { "copilot.lua", "nvim-cmp" },
-  },
+  }
 }
 
 -- required copilot config
