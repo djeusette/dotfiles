@@ -66,7 +66,16 @@ lvim.builtin.which_key.mappings["m"] = {
   S = { "<cmd>HopWord<CR>", "HopWord" },
   -- vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
   -- vim.api.nvim_set_keymap("n" "S", ":HopWord<cr>", { silent = true })
+}
 
+lvim.builtin.which_key.mappings["r"] = {
+  name = "+Replace (Spectre)",
+  o = { "<cmd>lua require('spectre').open()<CR>", "Open" },
+  c = { "<cmd>lua require('spectre.actions').run_current_replace()<CR>", "Replace current line" },
+  R = { "<cmd>lua require('spectre.actions').run_replace()<CR>", "Replace all" },
+  v = { "<cmd>lua require('spectre').change_view()<CR>", "Change result view mode" },
+  t = { "<cmd>lua require('spectre').toggle_line()<CR>", "Toggle current item" },
+  s = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", "Search current word", mode = "n" },
 }
 
 -- -- Change theme settings
@@ -165,22 +174,15 @@ lvim.plugins = {
     ft = { "fugitive" }
   },
   {
-    "zbirenbaum/copilot.lua",
-    event = { "VimEnter" },
+    "zbirenbaum/copilot-cmp",
+    event = "InsertEnter",
+    dependencies = { "zbirenbaum/copilot.lua" },
     config = function()
       vim.defer_fn(function()
-        require("copilot").setup {
-          plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
-        }
+        require("copilot").setup()     -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+        require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
       end, 100)
     end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua", "nvim-cmp" },
-    config = function()
-      require("copilot_cmp").setup()
-    end
   },
   {
     "phaazon/hop.nvim",
@@ -199,11 +201,19 @@ lvim.plugins = {
     end,
     ft = "dart",
   },
+  {
+    "windwp/nvim-spectre",
+    dependencies = "nvim-lua/plenary.nvim",
+    event = "BufRead",
+    config = function()
+      require("spectre").setup()
+    end,
+  },
 }
 
--- required copilot config
-lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
-table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+-- -- required copilot config
+-- lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+-- table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 vim.g['test#strategy'] = 'dispatch'
 
