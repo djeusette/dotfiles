@@ -2,6 +2,9 @@
 # oh-my-zsh config
 # ---
 
+# Bun
+export PATH="/Users/djeusette/.bun/bin:$PATH"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
