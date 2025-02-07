@@ -111,7 +111,13 @@ source $ZSH/oh-my-zsh.sh
 # end of oh-my-zsh config
 # ---
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+# append completions to fpath
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
 . /opt/homebrew/etc/profile.d/z.sh
 
 # Activate the augosuggestions
