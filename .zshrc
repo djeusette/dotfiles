@@ -77,7 +77,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git you-should-use asdf)
+plugins=(git you-should-use mise)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,10 +111,7 @@ source $ZSH/oh-my-zsh.sh
 # end of oh-my-zsh config
 # ---
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-
-# append completions to fpath
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+eval "$(mise activate zsh)"
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
